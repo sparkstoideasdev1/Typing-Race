@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "TypingRace/TypingRace/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/TypingRace/staticfiles/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "TypingRace/TypingRace/wsgi.py"
+    }
+  ]
+}
