@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Race</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div class="brand">🏁 Typing Race</div>
+        <div class="subtitle">Type fast. Race smart.</div>
+      </header>
+      <section class="stats" aria-live="polite">
+        <div class="stat">
+          <span>WPM</span><strong id="wpm">0</strong>
+        </div>
+        <div class="stat">
+          <span>Accuracy</span><strong id="accuracy">100%</strong>
+        </div>
+        <div class="stat">
+          <span>Time</span><strong id="time">0.0s</strong>
+        </div>
+        <div class="stat">
+          <span>Position</span><strong id="position">5 / 5</strong>
+        </div>
+      </section>
+      <section class="track-wrap">
+        <canvas id="raceCanvas" width="1100" height="390" aria-label="Animated typing race track"></canvas>
+        <div id="countdown" class="countdown hidden">3</div>
+        <div id="banner" class="banner hidden"></div>
+      </section>
+      <section class="typing-panel">
+        <div class="section-title">Type the sentence to move your car</div>
+        <p id="sentence" class="sentence">{{ sentence }}</p>
+        <textarea id="typingInput" rows="3" placeholder="Click Start Race, then type here..." disabled spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+        <div class="buttons">
+          <button id="startBtn">Start Race</button><button id="restartBtn" class="secondary" disabled>Race Again</button>
+        </div>
+        <p id="message" class="message">Press Start Race when you're ready.</p>
+      </section>
+      <section id="results" class="results hidden">
+        <h2>Race Results</h2>
+        <div class="result-grid">
+          <div>
+            <span>Place</span><strong id="resultPlace">—</strong>
+          </div>
+          <div>
+            <span>WPM</span><strong id="resultWpm">0</strong>
+          </div>
+          <div>
+            <span>Accuracy</span><strong id="resultAccuracy">100%</strong>
+          </div>
+          <div>
+            <span>Time</span><strong id="resultTime">0s</strong>
+          </div>
+        </div>
+      </section>
+      <footer>Tip: accurate typing is just as important as speed.</footer>
+    </main>
+    <script>
+      const NEW_SENTENCE_URL = "{% url 'new_sentence' %}"
+    </script>
+    <script src="{% static 'js/game.js' %}"></script>
+  </body>
+</html>
